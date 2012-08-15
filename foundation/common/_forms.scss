@@ -1,0 +1,400 @@
+// Standard Forms
+form {
+  margin: 0 0 ( $formSpacing * $ratio );
+}
+
+.row form .row {
+  margin: 0 ( -( $formSpacing / 2 ) );
+  
+  .column, .columns {
+    padding: 0 ( $formSpacing / 2 );
+  }
+
+  &.collapse {
+    margin: 0;
+    
+    .column, .columns {
+      padding: 0;
+    }
+  }
+}
+
+label {
+  color:          lighten($black, 30%);
+  cursor:         pointer;
+  display:        block;
+  font-size:      ms(0);
+  font-weight:    500;
+  margin-bottom:  3px;
+
+  &.right {
+    float:        none;
+    text-align:   right;
+  }
+  
+  &.inline {
+    line-height:  ( ms(0) + ( $formSpacing * 1.5 ) );
+    margin:       0 0 $formSpacing 0;
+  }
+}
+
+@media only screen and (max-width: $screenSmall - 1) {
+  label.right {
+    text-align: left;
+  }
+}
+
+.prefix, .postfix {
+  display: block;
+  height: ( ms(0) + ( $formSpacing * 1.5 ) );
+  line-height: ( ms(0) + ( $formSpacing * 1.5 ) ) - 1;
+  padding-bottom: 0;
+  padding-top: 0;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  z-index: 2;
+}
+
+a.button.prefix, a.button.postfix {
+  padding-left: 0;
+  padding-right: 0;
+  text-align: center;
+}
+
+span.prefix, span.postfix {
+  background: darken( $white, 5% );
+  border:     1px solid darken( $white, 20% );
+}
+
+.prefix {
+  @include border-corner-radius( top, left, 2px );
+  @include border-corner-radius( bottom, left, 2px );
+  
+  left: 2px;
+}
+.postfix {
+  @include border-corner-radius( top, right, 2px );
+  @include border-corner-radius( bottom, right, 2px );
+  
+  right: 2px;
+}
+
+input[type="text"], input[type="password"], input[type="date"],
+input[type="datetime"], input[type="email"], input[type="number"],
+input[type="search"], input[type="tel"], input[type="time"], input[type="url"],
+textarea {
+  @include border-radius( 2px );
+  @include box-shadow( inset 0 1px 2px rgba(0,0,0,0.1) );
+  @include transition( all 0.15s linear );
+
+  border:   1px solid darken( $white, 20% );
+  color:    rgba(0,0,0,0.75);
+  display:  block; font-size: ms(0);
+  height:   ( ms(0) + ( $formSpacing * 1.5 ) );
+  margin:   0 0 $formSpacing 0;
+  padding:  ( $formSpacing / 2 );
+  width:    100%;
+
+  &.oversize {
+    font-size:  ms(1);
+    padding:    ( ( $formSpacing - 4 ) / 2 ) ( $formSpacing / 2 );
+  }
+
+  &:focus {
+    background:   darken( $white, 2% );
+    outline:      none !important;
+    border-color: darken( $white, 30% );
+  }
+
+  &[disabled] {
+    background-color: #ddd;
+  }
+}
+
+textarea {
+  height: auto;
+}
+
+select {
+  width: 100%;
+}
+
+// Fieldsets
+fieldset {
+  border:                 solid 1px #ddd;
+  border-radius:          3px;
+  -moz-border-radius:     3px;
+  -webkit-border-radius:  3px;
+  
+  padding:  12px 12px 0;
+  margin:   18px 0;
+
+  legend {
+    font-weight:  bold;
+    background:   $white;
+    padding:      0 3px; margin: 0 0 0 -3px;
+  }
+}
+
+// Errors
+.error input, input.error, .error textarea, textarea.error {
+  border-color:     $alertColor;
+  background-color: rgba($alertColor, 0.1);
+}
+
+.error label, label.error {
+  color: $alertColor;
+}
+
+.error small, small.error {
+  @include border-bottom-left-radius(2px);
+  @include border-bottom-right-radius(2px);
+  @include font-size(12);
+  
+  background:     $alertColor;
+  color:          #fff;
+  display:        block;
+  font-weight:    bold;
+  margin-top:     -($formSpacing) - 1;
+  margin-bottom:  $formSpacing;
+  padding:        6px 4px;
+}
+
+@media only screen and (max-width: $screenSmall - 1) {
+  @for $i from 1 through $totalColumns {
+    input[type="text"].#{ convert-number-to-word($i) },
+    input[type="password"].#{ convert-number-to-word($i) }, 
+    input[type="date"].#{ convert-number-to-word($i) },
+    input[type="datetime"].#{ convert-number-to-word($i) },
+    input[type="email"].#{ convert-number-to-word($i) },
+    input[type="number"].#{ convert-number-to-word($i) },
+    input[type="search"].#{ convert-number-to-word($i) },
+    input[type="tel"].#{ convert-number-to-word($i) },
+    input[type="time"].#{ convert-number-to-word($i) },
+    input[type="url"].#{ convert-number-to-word($i) },
+    textarea.#{ convert-number-to-word($i) } {
+      width: 100% !important;
+    }
+  }
+}
+
+// Custom Forms
+form.custom {
+  span.custom {
+    background: #fff;
+    border:     solid 1px #ccc;
+    display:    inline-block;
+    height:     16px;
+    position:   relative;
+    top:        2px;
+    width:      16px;
+
+    &.radio {
+      @include border-radius(100px);
+    }
+    
+    &.checkbox {
+      &:before {
+        color:        #fff;
+        content:      "";
+        display:      block;
+        font-size:    14px;
+        height:       14px;
+        left:         0;
+        line-height:  0.8;
+        position:     absolute;
+        text-align:   center;
+        top:          0;
+        width:        14px;
+      }
+    }
+    
+    &.radio.checked {
+      &:before {
+        @include border-radius(100px);
+        
+        background: #222;
+        content:    "";
+        display:    block;
+        height:     8px;
+        left:       3px;
+        position:   relative;
+        top:        3px;
+        width:      8px;
+      }
+    }
+    
+    &.checkbox.checked {
+      &:before {
+        content: "\00d7";
+        color: #222;
+      }
+    }
+  }
+
+  div.custom.dropdown {
+    display:        block;
+    height:         28px;
+    margin-bottom:  9px;
+    margin-top:     2px;
+    position:       relative;
+    width:          auto;
+
+    a.current {
+      background-color:   #fff;
+      border:             solid 1px #ddd;
+      color:              #141414;
+      display:            block;
+      line-height:        26px;
+      min-height:         28px;
+      padding:            0 38px 0 6px;
+      white-space:        nowrap;
+      width:              auto;
+    }
+    
+    a.selector {
+      border:     solid 1px #ddd;
+      display:    block;
+      height:     28px;
+      position:   absolute;
+      right:      0;
+      top:        0;
+      width:      27px;
+      
+      &:after {
+        @include cssTriangle(5px, #aaa, top);
+        
+        content:      "";
+        display:      block;
+        left:         50%;
+        margin-left:  -5px;
+        margin-top:   -2px;
+        position:     absolute;
+        top:          50%;
+      }
+    }
+
+    &:hover, &.open {
+      a.selector {
+        &:after {
+          @include cssTriangle(5px, #222, top);
+        }
+      }
+    }
+
+    &.open ul {
+      display: block; z-index: 10;
+    }
+
+    &.small {
+      width: 134px !important;
+    }
+    
+    &.medium {
+      width: 254px !important;
+    }
+    
+    &.large {
+      width: 434px !important;
+    }
+    
+    &.expand {
+      width: 100% !important;
+    }
+
+    &.open.small ul {
+      width: 134px !important;
+    }
+    
+    &.open.medium ul {
+      width: 254px !important;
+    }
+    
+    &.open.large ul {
+      width: 434px !important;
+    }
+    
+    &.open.expand ul {
+      width: 100% !important;
+    }
+  }
+
+  div.custom.dropdown ul {
+    background: rgba(#fff,0.95);
+    border:     solid 1px darken($white, 20%);
+    display:    none; 
+    left:       0;
+    margin:     0;
+    padding:    0;
+    position:   absolute;
+    top:        27px;
+    width:      auto;
+
+    li {
+      color:        #555;
+      cursor:       pointer;
+      font-size:    ms(0) - 1;
+      line-height:  18px;
+      list-style:   none;
+      margin:       0;
+      min-height:   18px;
+      padding:      3px 38px 3px 6px;
+      white-space:  nowrap;
+    }
+    
+    li.selected {
+      color:      #000;
+      background: lighten($mainColor, 40%);
+      
+      &:after {
+        content:  "\2013";
+        position: absolute;
+        right:    10px;
+      }
+    }
+    
+    li:hover {
+      background-color: lighten($mainColor, 45%);
+      color:            #222;
+      
+      &:after {
+        color:    lighten($mainColor, 25%);
+        content:  "\2013";
+        position: absolute;
+        right:    10px;
+      }
+    }
+
+    li.selected:hover {
+      background: lighten($mainColor, 40%);
+      color:      #000;
+      cursor:     default;
+      
+      &:after {
+        color: #000;
+      }
+    }
+    
+    &.show {
+      display: block;
+    }
+  }
+
+  // Custom input, disabled
+  .custom.disabled {
+    background-color: #ddd;
+  }
+}
+
+// Correct FF custom dropdown height
+@-moz-document url-prefix() {
+  form.custom div.custom.dropdown a.selector {
+    height: 30px;
+  }
+}
+
+.lt-ie9 form.custom div.custom.dropdown a.selector {
+  height: 30px;
+}
+
