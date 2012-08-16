@@ -322,7 +322,6 @@ input[type=submit].button, button.button {
     border-top:     1px solid darken($white, 20%);
   }
 
-  // STOP
   ul.no-hover.show-dropdown {
     display: block !important;
   }
@@ -334,94 +333,268 @@ input[type=submit].button, button.button {
   }
 
   // Split Dropdown Buttons
-  &.split { padding: 0; position: relative;
+  &.split {
+    padding: 0;
+    position: relative;
 
-    &:after { display: none; }
-    &:hover { background-color: $mainColor; }
-    &.alert:hover { background-color: $alertColor; }
-    &.success:hover { background-color: $successColor; }
-    &.secondary:hover { background-color: $secondaryColor; }
+    &:after {
+      display: none;
+    }
+    
+    &:hover {
+      background-color: $mainColor;
+    }
+    
+    &.alert:hover {
+      background-color: $alertColor;
+    }
+    
+    &.success:hover {
+      background-color: $successColor;
+    }
+    
+    &.secondary:hover {
+      background-color: $secondaryColor;
+    }
 
     // Sizes
-    &>a { color: $white; display: block; padding: $btnBase (($btnBase * 2.5) * 2) ($btnBase + 1) ($btnBase * 2); @include single-transition(background-color, .15s, ease-in-out);
-      &:hover { background-color: darken($mainColor, 10%); }
+    &>a {
+      @include single-transition(background-color, .15s, ease-in-out);
+      
+      color: $white;
+      display: block;
+      padding: $btnBase (($btnBase * 2.5) * 2) ($btnBase + 1) ($btnBase * 2);
+
+      &:hover {
+        background-color: darken($mainColor, 10%);
+      }
     }
-    &.large>a { padding: $largeBtnBase (($largeBtnBase * 2.5) * 2) ($largeBtnBase + 1) ($largeBtnBase * 2); }
-    &.small>a { padding: $smallBtnBase (($smallBtnBase * 2.5) * 2) ($smallBtnBase + 1) ($smallBtnBase * 2); }
-    &.tiny>a { padding: $tinyBtnBase (($tinyBtnBase * 2.5) * 2) ($tinyBtnBase + 1) ($tinyBtnBase * 2); }
+
+    &.large>a {
+      padding: $largeBtnBase (($largeBtnBase * 2.5) * 2) ($largeBtnBase + 1) ($largeBtnBase * 2);
+    }
+
+    &.small>a {
+      padding: $smallBtnBase (($smallBtnBase * 2.5) * 2) ($smallBtnBase + 1) ($smallBtnBase * 2);
+    }
+
+    &.tiny>a {
+      padding: $tinyBtnBase (($tinyBtnBase * 2.5) * 2) ($tinyBtnBase + 1) ($tinyBtnBase * 2);
+    }
 
     // Triangle Spans
-    &>span { background-color: $mainColor; position: absolute; right: 0; top: 0; height: 100%; width: $btnBase * 3; border-left: 1px solid darken($mainColor, 15%); @include box-shadow(1px 1px 0 $shinyEdge inset); @include single-transition(background-color, .15s, ease-in-out);
-      &:hover { background-color: darken($mainColor, 10%); }
-      &:after { @include cssTriangle(6px, #fff, top); position: absolute; top: 50%; left: 50%; margin-left: -6px; margin-top: -2px; }
+    &>span {
+      @include box-shadow(1px 1px 0 $shinyEdge inset);
+      @include single-transition(background-color, .15s, ease-in-out);
+
+      background-color: $mainColor;
+      border-left:      1px solid darken($mainColor, 15%);
+      height:           100%;
+      position:         absolute;
+      right:            0;
+      top:              0;
+      width:            $btnBase * 3;
+
+      &:hover {
+        background-color: darken($mainColor, 10%);
+      }
+
+      &:after {
+        @include cssTriangle(6px, #fff, top);
+        
+        left:         50%;
+        margin-left:  -6px;
+        margin-top:   -2px;
+        position:     absolute;
+        top:          50%;
+      }
     }
-    &.secondary>span:after { @include cssTriangle(6px, darken(($secondaryColor), 80%), top); }
 
-    &.large span { width: $largeBtnBase * 3; }
-    &.small span { width: $smallBtnBase * 3; }
-    &.tiny span { width: $tinyBtnBase * 3; }
+    &.secondary>span:after {
+      @include cssTriangle(6px, darken(($secondaryColor), 80%), top);
+    }
 
-    &.large span:after { @include cssTriangle(7px, #fff, top); margin-top: -3px; margin-left: -7px; }
-    &.small span:after { @include cssTriangle(4px, #fff, top); margin-top: -1px; margin-left: -4px; }
-    &.tiny span:after { @include cssTriangle(3px, #fff, top); margin-top: -1px; margin-left: -3px; }
+    &.large span {
+      width: $largeBtnBase * 3;
+    }
+    
+    &.small span {
+      width: $smallBtnBase * 3;
+    }
+    
+    &.tiny span {
+      width: $tinyBtnBase * 3;
+    }
+
+    &.large span:after {
+      @include cssTriangle(7px, #fff, top);
+
+      margin-left:  -7px;
+      margin-top:   -3px;
+    }
+
+    &.small span:after {
+      @include cssTriangle(4px, #fff, top);
+      
+      margin-left:  -4px;
+      margin-top:   -1px;
+    }
+
+    &.tiny span:after {
+      @include cssTriangle(3px, #fff, top);
+      
+      margin-left:  -3px;
+      margin-top:   -1px;
+    }
 
     // Colors
-    &.alert>span { background-color: $alertColor; border-left-color: darken($alertColor, 15%); }
-    &.success>span { background-color: $successColor; border-left-color: darken($successColor, 15%); }
-    &.secondary>span { background-color: $secondaryColor; border-left-color: darken($secondaryColor, 15%); }
-    &.secondary>a { color: darken(($secondaryColor), 80%); }
+    &.alert>span {
+      background-color:   $alertColor;
+      border-left-color:  darken($alertColor, 15%);
+    }
 
-    &.alert>a:hover, &.alert>span:hover { background-color: darken($alertColor, 10%); }
-    &.success>a:hover, &.success>span:hover { background-color: darken($successColor, 10%); }
-    &.secondary>a:hover, &.secondary>span:hover { background-color: darken($secondaryColor, 10%); }
+    &.success>span {
+      background-color:   $successColor;
+      border-left-color:  darken($successColor, 15%);
+    }
+
+    &.secondary>span {
+      background-color:   $secondaryColor;
+      border-left-color:  darken($secondaryColor, 15%);
+    }
+
+    &.secondary>a {
+      color: darken(($secondaryColor), 80%);
+    }
+
+    &.alert>a:hover, &.alert>span:hover {
+      background-color: darken($alertColor, 10%);
+    }
+
+    &.success>a:hover, &.success>span:hover {
+      background-color: darken($successColor, 10%);
+    }
+
+    &.secondary>a:hover, &.secondary>span:hover {
+      background-color: darken($secondaryColor, 10%);
+    }
   }
 }
 
 // Button Groups
-ul.button-group { list-style: none; padding: 0; margin: 0 0 12px; @include clearfix();
+ul.button-group {
+  @include clearfix();
+  
+  list-style: none;
+  margin:     0 0 12px;
+  padding:    0;
 
-  li { padding: 0; margin: 0 0 0 -1px; float: left;
-    &:first-child { margin-left: 0; }
+  li {
+    float:    left;
+    margin:   0 0 0 -1px;
+    padding:  0;
+    
+    &:first-child {
+      margin-left: 0;
+    }
   }
 
   &.radius li {
     a {
-      &.button, &.button.radius, &.button-rounded { @include border-radius(0px); }
+      &.button, &.button.radius, &.button-rounded {
+        @include border-radius(0px);
+      }
     }
+
     &:first-child a {
-      &.button, &.button.radius { @include border-left-radius($buttonRadius); }
-      &.button.rounded { @include border-left-radius(1000px); }
+      &.button, &.button.radius {
+        @include border-left-radius($buttonRadius);
+      }
+      
+      &.button.rounded {
+        @include border-left-radius(1000px);
+      }
     }
+
     &:last-child a {
-      &.button, &.button.radius { @include border-right-radius($buttonRadius); }
-      &.button.rounded { @include border-right-radius(1000px); }
+      &.button, &.button.radius {
+        @include border-right-radius($buttonRadius);
+      }
+      
+      &.button.rounded {
+        @include border-right-radius(1000px);
+      }
     }
   }
 
   &.even {
-    a.button { width: 100%; }
-    &.two-up li { width: 50%; }
-    &.three-up li { width: 33.3%; }
-    &.three-up li:first-child { width: 33.4%; }
-    &.four-up li { width: 25%; }
-    &.five-up li { width: 20%; }
+    a.button {
+      width: 100%;
+    }
+    
+    &.two-up li {
+      width: 50%;
+    }
+    
+    &.three-up li {
+      width: 33.3%;
+    }
+    
+    &.three-up li:first-child {
+      width: 33.4%;
+    }
+    
+    &.four-up li {
+      width: 25%;
+    }
+    
+    &.five-up li {
+      width: 20%;
+    }
   }
 }
 
 @media only screen and (max-width: $screenSmall - 1) {    
   .button-group {
-    button.button, input[type="submit"].button { width: auto; padding: $btnBase ($btnBase * 2) ($btnBase + 1);
-      &.large     { padding: ($largeBtnBase) ($largeBtnBase * 2) ($largeBtnBase + 1); }
-      &.medium    { padding: $btnBase ($btnBase * 2) ($btnBase + 1); }
-      &.small     { padding: ($smallBtnBase) ($smallBtnBase * 2) ($smallBtnBase + 1); }
-      &.tiny      { padding: ($tinyBtnBase) ($tinyBtnBase * 2) ($tinyBtnBase + 1); }
+    button.button, input[type="submit"].button {
+      padding:  $btnBase ($btnBase * 2) ($btnBase + 1);
+      width:    auto;
+      
+      &.large {
+        padding: ($largeBtnBase) ($largeBtnBase * 2) ($largeBtnBase + 1);
+      }
+      
+      &.medium {
+        padding: $btnBase ($btnBase * 2) ($btnBase + 1);
+      }
+      
+      &.small {
+        padding: ($smallBtnBase) ($smallBtnBase * 2) ($smallBtnBase + 1);
+      }
+      
+      &.tiny {
+        padding: ($tinyBtnBase) ($tinyBtnBase * 2) ($tinyBtnBase + 1);
+      }
     }
-    &.even button.button, &.even input[type="submit"].button { width: 100%; padding-left: 0; padding-right: 0; }
+
+    &.even button.button, &.even input[type="submit"].button {
+      padding-left:   0;
+      padding-right:  0;
+      width:          100%;
+    }
   }
 }
 
-div.button-bar { overflow: hidden;
-  ul.button-group { float: left; margin-right: 8px; }
-  ul.button-group:last-child { margin-left: 0; }
+div.button-bar {
+  overflow: hidden;
+  
+  ul.button-group {
+    float: left;
+    margin-right: 8px;
+  }
+  
+  ul.button-group:last-child {
+    margin-left: 0;
+  }
 }
 
